@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerassentials</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('https://audifortsaude.wordpress.com/wp-content/uploads/2026/02/screenshot_2026-02-05-17-31-59-707_com.android.chrome-edit.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .bg-image {
+                background-image: url('https://audifortsaude.wordpress.com/wp-content/uploads/2026/02/screenshot_2026-02-05-17-32-27-159_com.android.chrome-edit.jpg');
+            }
+        }
+        
+        .cookie-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 9999;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .cookie-modal {
+            background: white;
+            border-radius: 20px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+        
+        .cookie-header {
+            padding: 32px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .cookie-header h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+        
+        .cookie-body {
+            padding: 32px;
+        }
+        
+        .cookie-body p {
+            color: #475569;
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+        
+        .cookie-buttons {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .cookie-btn {
+            padding: 16px 24px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            text-align: center;
+            width: 100%;
+            font-family: inherit;
+        }
+        
+        .btn-aceitar {
+            background: #196fd1;
+            color: #ffffff;
+            box-shadow: 0 4px 12px #196fd140;
+        }
+        
+        .btn-aceitar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px #196fd160;
+        }
+        
+        .btn-recusar {
+            background: #5e5e5e;
+            color: #ffffff;
+            box-shadow: 0 4px 12px #5e5e5e40;
+        }
+        
+        .btn-recusar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px #5e5e5e60;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: rgba(0,0,0,0.1);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .hidden-content {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .cookie-modal {
+                border-radius: 16px;
+            }
+            
+            .cookie-header {
+                padding: 24px 20px;
+            }
+            
+            .cookie-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .cookie-body {
+                padding: 24px 20px;
+            }
+            
+            .cookie-buttons {
+                gap: 10px;
+            }
+            
+            .cookie-btn {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-image"></div>
+    
+    <div class="hidden-content">
+        <h1>Kerassentials – Solução Natural Antifúngica para Unhas e Pele Saudável</h1>
+        <div>Kerassentials é uma fórmula natural e poderosa desenvolvida para combater infecções fúngicas em unhas e pele, promovendo um ambiente livre de fungos e irritações. Esta solução antifúngica tópica foi especialmente projetada para pessoas que lutam contra fungo nas unhas, coceira nos pés, odor desagradável, unhas amareladas ou quebradiças, e outros sintomas causados por crescimento excessivo de fungos.
+Com ingredientes 100% naturais como óleo de Tea Tree, óleo de Lavanda, óleo de Amêndoas, Aloe Vera, óleo de Lemongrass, óleo de Manuka, óleo de linhaça (flaxseed) e vitamina E, Kerassentials não apenas combate fungos na raiz, mas também fortalece as unhas e hidrata a pele ao redor. Seus ingredientes entram em ação para eliminar fungos, reduzir inflamação, aliviar irritações, hidratar profundamente a pele e promover unhas mais fortes e saudáveis com uso diário contínuo.
+Esta fórmula natural é livre de químicos agressivos, não contém substâncias tóxicas e é fácil de usar diariamente após o banho para melhores resultados. Com aplicação consistente, usuários relatam melhora no aspecto das unhas, menos vermelhidão e coceira, e uma aparência mais saudável da pele em volta das áreas afetadas.
+Kerassentials oferece ainda uma solução segura e eficaz comparada a tratamentos convencionais fortemente químicos, ajudando você a recuperar confiança, conforto e bem-estar dos pés e das mãos em semanas de uso diário</div>
+    </div>
+    
+    <div class="cookie-overlay" id="cookieOverlay">
+        <div class="cookie-modal">
+            <button class="close-btn" onclick="aceitarCookies()" aria-label="Fechar">✕</button>
+            
+            <div class="cookie-header">
+                <h2>🍪 Cookies</h2>
+            </div>
+            
+            <div class="cookie-body">
+                <p>This site uses cookies to improve your navigation experience.</p>
+                
+                <div class="cookie-buttons">
+                    <button class="cookie-btn btn-aceitar" onclick="aceitarCookies()">
+                        Accept Cookies
+                    </button>
+                    <button class="cookie-btn btn-recusar" onclick="aceitarCookies()">
+                        Decline Cookies
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function aceitarCookies() {
+            window.location.replace('https://www.checkout-ds24.com/redir/533765/Gisele_12/');
+        }
+        
+        document.getElementById('cookieOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                aceitarCookies();
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                aceitarCookies();
+            }
+        });
+    </script>
+</body>
+</html>
